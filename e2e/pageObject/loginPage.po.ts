@@ -5,12 +5,17 @@ const selectors = {
     passwordInput: "input[data-testid=password]",
     loginButton: "button[data-testid=logInButton]",
 }
+export class LoginPage{
+    readonly page: Page;
 
-export const actionsForLoginPage = {
-    login: async function loginToWerk8(login: string, password: string, page: Page){
+    constructor(page: Page)
+    {
+        this.page = page;
+    }
+
+    async loginToWerk8(page: Page, login: string, password: string){
         await page.locator(selectors.loginInput).fill(login);
-        await page.locator(selectors.passwordInput).type(password);
+        await page.locator(selectors.passwordInput).fill(password);
         await page.locator(selectors.loginButton).click();
     }
 }
-
